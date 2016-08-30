@@ -1,0 +1,58 @@
+doctype html
+- var title = "Work Request Form"
+html(class='no-js', lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='x-ua-compatible', content='ie=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title #{title} - CMI Design Department
+    link(rel='stylesheet', href='css/app.css')
+
+  body
+    .row
+      include ./includes/_graphics-menu.jade
+    .row
+      .column.small-12
+        form.basic#qq-form(action='index.html', method='post')
+          fieldset.fieldset
+            h1 Project Owner
+            input(type='text', name='owner', autocomplete='on', placeholder='your name', autofocus, required)
+            h2 Project Stakeholders
+            .stakeholders.column.row
+              .row
+                .column.small-11
+                  input(type='text', name='extra-name[]', placeholder='name')
+                  input(type='text', name='extra-email[]', placeholder='email')
+                .column.small-1
+                  a(class='button success add-field', href='#') &plus;
+            h2 Project Description
+            textarea(name='description', rows='10', cols='10', required)
+            h2 Project Milestones
+            .milestones.column.row
+              h3 Desired completion date
+              input(type='date', name='due-date', placeholder='Desired completion date', required)
+              .row
+                h4.column Additional milestone
+                .column.small-11
+                  input(type='text', name='extra-milestone[]', placeholder='description')
+                  input(type='date', name='extra-date[]', placeholder='date')
+                .column.small-1
+                  a(class='button success add-date', href='#') &plus;
+
+            //-p Other significant date
+            //-input(type='date', name='other-date-0')
+            fieldset.fieldset
+              h2 Project Files
+              div#fine-uploader
+              include ./includes/_fine-uploader.html
+    .base
+      .row
+        .column.small-12.align-self-bottom
+          input.button.success(type='submit', value='Submit', form='qq-form')
+
+
+
+
+
+
+    include ./includes/_scripts.jade
